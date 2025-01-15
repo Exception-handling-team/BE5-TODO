@@ -1,0 +1,6 @@
+#테스트 환경에서 스케줄러 비활성화
+spring:
+  task:
+    scheduling:
+      enabled: false
+
