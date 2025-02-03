@@ -6,11 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TodoRunner implements CommandLineRunner {
+public class TodoRunner {
+//public class TodoRunner implements CommandLineRunner {
 
     private TodoListController todoListController;
 
-    public TodoRunner(TodoListController todoListController) {
+    /*public TodoRunner(TodoListController todoListController) {
         this.todoListController = todoListController;
     }
 
@@ -24,5 +25,5 @@ public class TodoRunner implements CommandLineRunner {
 
     private boolean isTestEnvironment() {
         return System.getProperty("test.environment") != null;
-    }
+    }*/
 }

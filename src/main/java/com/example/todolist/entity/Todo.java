@@ -1,28 +1,22 @@
 package com.example.todolist.entity;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Entity
 @Getter
 @Setter
 public class Todo {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String description;
     private LocalDate dueDate;
     private String status;
 
-    @Override
-    public String toString() {
-        return "Todo{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", dueDate=" + dueDate +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }

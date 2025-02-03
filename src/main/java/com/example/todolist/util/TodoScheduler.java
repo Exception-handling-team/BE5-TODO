@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TodoScheduler {
 
-    private TodoListService todoService;
+    private final TodoListService todoService;
+
+    public TodoScheduler(TodoListService todoService) {
+        this.todoService = todoService;
+    }
 
     /**
      * 매일 오전 9시에 남은 할 일의 개수를 출력.
@@ -23,6 +27,4 @@ public class TodoScheduler {
         long pendingCount = todoService.countPendingTodos();
         return "[스케줄러] 현재 남은 할 일은 " + pendingCount + "개입니다.";
     }
-
-
 }
