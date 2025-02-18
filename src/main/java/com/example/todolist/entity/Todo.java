@@ -19,4 +19,8 @@ public class Todo {
     private LocalDate dueDate;
     private String status;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User createdBy;
+
 }

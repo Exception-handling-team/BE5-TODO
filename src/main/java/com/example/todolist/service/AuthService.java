@@ -5,6 +5,7 @@ import com.example.todolist.dto.TokenResponseDto;
 import com.example.todolist.entity.User;
 import com.example.todolist.repository.UserRepository;
 import com.example.todolist.config.JwtUtil;
+import com.example.todolist.role.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,7 +25,8 @@ public class AuthService {
 
     public void register(LoginRequestDto request) {
         String encodedPassword = passwordEncoder.encode(request.getPassword());
-        User user = new User(request.getUsername(), encodedPassword);
+
+        User user = new User(request.getUsername(), encodedPassword, Role.USER);
         userRepository.save(user);
     }
 

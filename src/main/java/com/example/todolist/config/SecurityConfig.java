@@ -5,6 +5,7 @@ import com.example.todolist.service.impl.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,6 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/auth/**").permitAll() // 인증 없이 접근 가능
                         .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/swagger-ui.html").permitAll() // 인증 없이 접근 가능
+                        .requestMatchers(HttpMethod.POST, "/todos/**").authenticated() // 할 일 생성은 인증 필요
+                        .requestMatchers(HttpMethod.PUT, "/todos/**").authenticated() // 수정도 인증 필요
+                        .requestMatchers(HttpMethod.DELETE, "/todos/**").authenticated() // 삭제도 인증 필요
                         .anyRequest().authenticated()) // 나머지는 인증 필요
                 .addFilterBefore(new JwtAuthenticationFilter(jwtUtil, userDetailsService),
                         UsernamePasswordAuthenticationFilter.class)

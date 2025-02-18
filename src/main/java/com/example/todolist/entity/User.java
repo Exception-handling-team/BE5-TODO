@@ -1,5 +1,6 @@
 package com.example.todolist.entity;
 
+import com.example.todolist.role.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +28,13 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    public User(String username, String password) {
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     @Override
